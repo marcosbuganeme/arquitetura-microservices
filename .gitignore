@@ -1,0 +1,49 @@
+HELP.md
+/target/
+
+## auth ##
+/auth/mvnw*
+/auth/.mvn/wrapper/
+
+## core ##
+/core/mvnw*
+/core/.mvn/wrapper/
+
+## discovery ##
+/discovery/mvnw*
+/discovery/.mvn/wrapper/
+
+## financeiro ##
+/financeiro/mvnw*
+/financeiro/.mvn/wrapper/
+
+## gateway ##
+/gateway/mvnw*
+/gateway/.mvn/wrapper/
+
+## token ##
+/token/mvnw*
+/token/.mvn/wrapper/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
