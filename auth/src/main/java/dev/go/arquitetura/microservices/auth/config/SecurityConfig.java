@@ -2,6 +2,7 @@ package dev.go.arquitetura.microservices.auth.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,6 +17,7 @@ import dev.go.arquitetura.microservices.token.converter.TokenConverter;
 import dev.go.arquitetura.microservices.token.creator.TokenCreator;
 import dev.go.arquitetura.microservices.token.filter.JwtTokenAuthorizationFilter;
 
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig extends SecurityTokenConfig {
 
