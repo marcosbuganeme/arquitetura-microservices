@@ -59,7 +59,10 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
     @Override
     @SneakyThrows
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication auth) {
+    protected void successfulAuthentication(HttpServletRequest request, 
+    										HttpServletResponse response, 
+    										FilterChain chain, 
+    										Authentication auth) {
 
         log.info("A autenticação foi bem-sucedida para o usuário '{}', gerando o token assinado e criptografado", auth.getName());
 
