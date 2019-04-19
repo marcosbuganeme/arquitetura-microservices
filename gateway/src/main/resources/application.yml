@@ -1,5 +1,11 @@
+spring:
+  application:
+    name: gateway
+
 server:
-  port: 8083
+  port: 8080
+  servlet:
+    context-path: /gateway
 
 eureka:
   instance:
@@ -7,25 +13,17 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8081/eureka/
+    fetch-registry: true
     register-with-eureka: true
 
-spring:
-  application:
-    name: auth
-  jpa:
-    show-sql: false
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-  jmx:
-    enabled: false
-  datasource:
-    url: jdbc:mysql://localhost:3306/arquitetura-microservices?allowPublicKeyRetrieval=true&sslMode=DISABLED&useTimezone=true&serverTimezone=UTC
-    username: root
-    password: root
+zuul:
+  sensitive-headers: Cookie
 
 jwt:
   config:
+    login-url: /auth/login
     type: signed
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

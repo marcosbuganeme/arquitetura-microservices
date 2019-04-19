@@ -12,5 +12,4 @@ public class FinanceiroApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

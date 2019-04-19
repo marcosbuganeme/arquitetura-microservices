@@ -1,6 +1,7 @@
 spring:
   application:
-    name: registry
+    name: discovery
+
 server:
   port: 8081
 

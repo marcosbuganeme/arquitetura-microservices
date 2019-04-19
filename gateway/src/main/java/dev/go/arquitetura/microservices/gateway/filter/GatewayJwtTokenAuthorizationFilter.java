@@ -47,7 +47,10 @@ public class GatewayJwtTokenAuthorizationFilter extends JwtTokenAuthorizationFil
         SecurityContextUtil.setSecurityContext(SignedJWT.parse(signedToken));
 
         if (jwtConfiguration.getType().equalsIgnoreCase("signed"))
-            RequestContext.getCurrentContext().addZuulRequestHeader("Authorization", jwtConfiguration.getHeader().getPrefix() + signedToken);
+
+            RequestContext
+            	.getCurrentContext()
+            	.addZuulRequestHeader("Authorization", prefixoJwt + signedToken);
 
         chain.doFilter(request, response);
     }

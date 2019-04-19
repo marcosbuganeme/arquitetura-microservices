@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Api(value = "Endpoints para gerenciar contas a pagar")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ContaPagarController {
-	
+
 	private final ContaPagarService contaPagarService;
 
 	@GetMapping
