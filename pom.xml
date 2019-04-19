@@ -17,12 +17,12 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>discovery</module>
+		<module>gateway</module>
+		<module>auth</module>
 		<module>financeiro</module>
 		<module>core</module>
 		<module>token</module>
-		<module>auth</module>
-		<module>discovery</module>
-		<module>gateway</module>
 	</modules>
 
 	<description>
@@ -163,20 +163,10 @@
 	</dependencyManagement>
 
 	<repositories>
-<!-- 		<repository> -->
-<!-- 			<id>jboss-repo</id> -->
-<!-- 			<url>http://repository.jboss.org/nexus/content/groups/public/</url> -->
-<!-- 		</repository> -->
-
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
 			<url>https://repo.spring.io/milestone</url>
 		</repository>
-
-<!-- 		<repository> -->
-<!-- 			<id>java-net-repo</id> -->
-<!-- 			<url>https://maven.java.net/content/repositories/public/</url> -->
-<!-- 		</repository> -->
 	</repositories>
 </project>
