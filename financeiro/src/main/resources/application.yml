@@ -11,9 +11,9 @@ eureka:
 
 spring:
   application:
-    name: course
+    name: financeiro
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
