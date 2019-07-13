@@ -46,7 +46,7 @@ public class ApplicationUser implements AbstractEntity {
     @Builder.Default
     @NotNull(message = "Campo 'regra' é obrigatório")
     @Column(nullable = false)
-    private String role = "USER";
+    private String role = "ADMIN";
 
     public ApplicationUser(@NotNull ApplicationUser applicationUser) {
 
