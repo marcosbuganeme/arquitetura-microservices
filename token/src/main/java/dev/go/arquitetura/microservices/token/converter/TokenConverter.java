@@ -20,14 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TokenConverter {
 
-    private final JwtConfiguration jwtConfiguration;
-
-    public @SneakyThrows String decryptToken(String encryptedToken) {
+    @SneakyThrows
+    public String decryptToken(String encryptedToken) {
 
         log.info("Decodificando o token");
 
         JWEObject jweObject = JWEObject.parse(encryptedToken);
-        DirectDecrypter directDecrypter = new DirectDecrypter(jwtConfiguration.getPrivateKey().getBytes());
+        DirectDecrypter directDecrypter = new DirectDecrypter(JwtConfiguration.privateKey.getBytes());
         jweObject.decrypt(directDecrypter);
 
         log.info("Token descriptografado, retornando token assinado ... ");
@@ -38,7 +37,8 @@ public class TokenConverter {
         			.serialize();
     }
 
-    public @SneakyThrows void validateTokenSignature(String signedToken) {
+    @SneakyThrows
+    public void validateTokenSignature(String signedToken) {
 
         log.info("Iniciando o método para validar a assinatura do token ...");
 

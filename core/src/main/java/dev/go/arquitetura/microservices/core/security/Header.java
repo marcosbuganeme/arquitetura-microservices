@@ -1,23 +1,10 @@
 package dev.go.arquitetura.microservices.core.security;
 
-public final class Header {
+import lombok.Getter;
 
-	private String name = "Authorization";
-	private String prefix = "Bearer ";
+@Getter
+public class Header {
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPrefix() {
-		return prefix;
-	}
-
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
-	}
+	private final String name = "Authorization";
+	private final String prefix = "Bearer ";
 }

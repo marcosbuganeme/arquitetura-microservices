@@ -21,10 +21,8 @@ import lombok.SneakyThrows;
 
 public class GatewayJwtTokenAuthorizationFilter extends JwtTokenAuthorizationFilter {
 
-    public GatewayJwtTokenAuthorizationFilter(TokenConverter tokenConverter, 
-    										  JwtConfiguration jwtConfiguration) {
-
-        super(tokenConverter, jwtConfiguration);
+    public GatewayJwtTokenAuthorizationFilter(TokenConverter tokenConverter) {
+        super(tokenConverter);
     }
 
     @Override
@@ -33,8 +31,8 @@ public class GatewayJwtTokenAuthorizationFilter extends JwtTokenAuthorizationFil
     								@NonNull HttpServletResponse response, 
     								@NonNull FilterChain chain) throws ServletException, IOException {
 
-    	String prefixoJwt = jwtConfiguration.getHeader().getPrefix();
-        String header = request.getHeader(jwtConfiguration.getHeader().getName());
+    	String prefixoJwt = JwtConfiguration.header.getPrefix();
+        String header = request.getHeader(JwtConfiguration.header.getName());
         
         if (Objects.isNull(header) || !header.startsWith(prefixoJwt)) {
             chain.doFilter(request, response);
@@ -46,11 +44,11 @@ public class GatewayJwtTokenAuthorizationFilter extends JwtTokenAuthorizationFil
         tokenConverter.validateTokenSignature(signedToken);
         SecurityContextUtil.setSecurityContext(SignedJWT.parse(signedToken));
 
-        if (jwtConfiguration.getType().equalsIgnoreCase("signed"))
+        if (JwtConfiguration.type.equalsIgnoreCase("signed"))
 
             RequestContext
             	.getCurrentContext()
-            	.addZuulRequestHeader("Authorization", prefixoJwt + signedToken);
+            	.addZuulRequestHeader(JwtConfiguration.header.getName(), prefixoJwt + signedToken);
 
         chain.doFilter(request, response);
     }

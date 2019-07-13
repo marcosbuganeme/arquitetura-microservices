@@ -30,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	private final TokenCreator tokenCreator;
-    private final JwtConfiguration jwtConfiguration;
     private final AuthenticationManager authenticationManager;
 
     @Override
@@ -72,9 +71,9 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
         log.info("Token gerado com sucesso, adicionando-o ao cabeçalho de resposta");
 
-        String header = jwtConfiguration.getHeader().getName();
+        String header = JwtConfiguration.header.getName();
         response.addHeader("Access-Control-Expose-Headers", "XSRF-TOKEN, " + header);
 
-        response.addHeader(header, jwtConfiguration.getHeader().getPrefix() + tokenCriptografado);
+        response.addHeader(header, JwtConfiguration.header.getPrefix() + tokenCriptografado);
     }
 }

@@ -8,17 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.go.arquitetura.microservices.financeiro.service.ContaPagarService;
 import io.swagger.annotations.Api;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @RequestMapping("v1/admin/contas/pagar")
 @Api(value = "Endpoints para gerenciar contas a pagar")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ContaPagarController {
 
-	private final ContaPagarService contaPagarService;
+	private @Autowired ContaPagarService contaPagarService;
 
 	@GetMapping
 	public ResponseEntity<?> receber() {

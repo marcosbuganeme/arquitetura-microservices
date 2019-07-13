@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -30,16 +29,12 @@ import com.nimbusds.jwt.SignedJWT;
 
 import dev.go.arquitetura.microservices.core.model.ApplicationUser;
 import dev.go.arquitetura.microservices.core.security.JwtConfiguration;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TokenCreator {
-
-    private final JwtConfiguration jwtConfiguration;
 
     @SneakyThrows
     public SignedJWT createSignedJWT(Authentication auth) {
@@ -97,7 +92,7 @@ public class TokenCreator {
 
     	log.info("Iniciando o Método de Token de Criptografia");
 
-        DirectEncrypter directEncrypter = new DirectEncrypter(jwtConfiguration.getPrivateKey().getBytes());
+        DirectEncrypter directEncrypter = new DirectEncrypter(JwtConfiguration.privateKey.getBytes());
         JWEObject jsonWebEncrypt = new JWEObject(new JWEHeader
 	        											.Builder(JWEAlgorithm.DIR, EncryptionMethod.A128CBC_HS256)
 										                .contentType("JWT")
@@ -124,7 +119,7 @@ public class TokenCreator {
 
 	private Date expiration() {
 
-		int tempoExpirar = jwtConfiguration.getExpiration() * 1000;
+		int tempoExpirar = JwtConfiguration.expiration * 1000;
 		return new Date(System.currentTimeMillis() + tempoExpirar);
 	}
 }

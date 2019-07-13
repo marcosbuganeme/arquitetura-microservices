@@ -26,15 +26,14 @@ import lombok.SneakyThrows;
 public class JwtTokenAuthorizationFilter extends OncePerRequestFilter {
 
 	protected final TokenConverter tokenConverter;
-    protected final JwtConfiguration jwtConfiguration;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, 
     								@NonNull HttpServletResponse response, 
     								@NonNull FilterChain chain) throws ServletException, IOException {
 
-    	String prefixoJwt = jwtConfiguration.getHeader().getPrefix();
-        String header = request.getHeader(jwtConfiguration.getHeader().getName());
+    	String prefixoJwt = JwtConfiguration.header.getPrefix();
+        String header = request.getHeader(JwtConfiguration.header.getName());
 
         if (Objects.isNull(header) || !header.startsWith(prefixoJwt)) {
             chain.doFilter(request, response);
@@ -43,7 +42,7 @@ public class JwtTokenAuthorizationFilter extends OncePerRequestFilter {
 
         String token = header.replace(prefixoJwt, "").trim();
 
-        SecurityContextUtil.setSecurityContext(equalsIgnoreCase("signed", jwtConfiguration.getType()) ? validate(token) : decryptValidating(token));
+        SecurityContextUtil.setSecurityContext(equalsIgnoreCase("signed", JwtConfiguration.type) ? validate(token) : decryptValidating(token));
 
         chain.doFilter(request, response);
     }
