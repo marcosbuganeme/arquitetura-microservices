@@ -64,7 +64,7 @@
 
 	<properties>
 		<swagger.version>2.9.2</swagger.version>
-		<nimbus-jose.version>7.0</nimbus-jose.version>
+		<nimbus-jose.version>7.9</nimbus-jose.version>
 		<commons-lang3.version>3.8.1</commons-lang3.version>
 		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
 	</properties>
